@@ -6,9 +6,11 @@ import { ActionConfig } from '../inputs.js'
 class GitHubReleasesLuxProvider implements LuxProvider {
   private readonly owner = 'lumen-oss'
   private readonly repo = 'lux'
+  private readonly version: string
   private readonly token?: string
 
   constructor(config: ActionConfig) {
+    this.version = config.version
     this.token = config.token || process.env.GITHUB_TOKEN
   }
 
@@ -54,12 +56,12 @@ class GitHubReleasesLuxProvider implements LuxProvider {
     return this.fetchJson(url) as Promise<GitHubRelease>
   }
 
-  async getRelease(rawVersion: string): Promise<LuxRelease> {
+  async getRelease(): Promise<LuxRelease> {
     let ghRelease: GitHubRelease
-    if (!rawVersion || rawVersion === 'latest') {
+    if (!this.version || this.version === 'latest') {
       ghRelease = await this.getGhReleaseLatest()
     } else {
-      ghRelease = await this.getGhReleaseByTag(rawVersion)
+      ghRelease = await this.getGhReleaseByTag(this.version)
     }
     return mapGithubReleaseToLuxRelease(ghRelease)
   }

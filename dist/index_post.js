@@ -1,4 +1,4 @@
-import { a as createGitHubActionsHandle } from './handle-BMApqLSP.js';
+import { c as collectConfig, a as createGitHubActionsHandle } from './handle-DZINOSIk.js';
 import 'os';
 import 'crypto';
 import 'fs';
@@ -32,8 +32,8 @@ import 'fs/promises';
 async function run_post(handle) {
     const env = handle.getEnv();
     const cache = handle.getCache();
-    const version = env.getVersionInput();
-    await cache.save(version);
+    const config = collectConfig(env);
+    await cache.save(config.version);
 }
 
 const handle = createGitHubActionsHandle();

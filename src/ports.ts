@@ -71,7 +71,7 @@ export class LuxProviderError extends Error {
 }
 
 export interface LuxProvider {
-  getRelease(version: string): Promise<LuxRelease>
+  getRelease(): Promise<LuxRelease>
 }
 
 export interface FileSystem {

@@ -1,4 +1,4 @@
-import { U as UnsupportedTargetError, c as collectConfig, a as createGitHubActionsHandle } from './handle-BMApqLSP.js';
+import { U as UnsupportedTargetError, c as collectConfig, a as createGitHubActionsHandle } from './handle-DZINOSIk.js';
 import { join } from 'path';
 import 'os';
 import 'crypto';
@@ -175,9 +175,9 @@ async function run(handle) {
         const config = collectConfig(env);
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
         env.debug(`Running on ${env.getTarget()}`);
-        const version = env.getVersionInput();
+        const version = config.version;
         await cache.restore(version);
-        const lux_release = await lux_provider.getRelease(version);
+        const lux_release = await lux_provider.getRelease();
         const installer_asset = lux_release.assetForTarget(env.getTarget());
         env.info(`Found installer release asset: ${JSON.stringify(installer_asset)}`);
         env.info(`Downloading Lux ${lux_release.version} installer...`);
