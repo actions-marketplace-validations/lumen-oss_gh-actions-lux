@@ -1,5 +1,5 @@
-import { U as UnsupportedTargetError, c as collectConfig, a as createGitHubActionsHandle } from './handle-DZINOSIk.js';
 import { join } from 'path';
+import { U as UnsupportedTargetError, c as createGitHubActionsHandle } from './handle-gOhP40VJ.js';
 import 'os';
 import 'crypto';
 import 'fs';
@@ -172,11 +172,8 @@ async function run(handle) {
     const downloader = handle.getDownloader();
     const cache = handle.getCache();
     try {
-        const config = collectConfig(env);
-        env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
         env.debug(`Running on ${env.getTarget()}`);
-        const version = config.version;
-        await cache.restore(version);
+        await cache.restore();
         const lux_release = await lux_provider.getRelease();
         const installer_asset = lux_release.assetForTarget(env.getTarget());
         env.info(`Found installer release asset: ${JSON.stringify(installer_asset)}`);

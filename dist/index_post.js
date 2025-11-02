@@ -1,4 +1,4 @@
-import { c as collectConfig, a as createGitHubActionsHandle } from './handle-DZINOSIk.js';
+import { c as createGitHubActionsHandle } from './handle-gOhP40VJ.js';
 import 'os';
 import 'crypto';
 import 'fs';
@@ -30,10 +30,8 @@ import 'tty';
 import 'fs/promises';
 
 async function run_post(handle) {
-    const env = handle.getEnv();
     const cache = handle.getCache();
-    const config = collectConfig(env);
-    await cache.save(config.version);
+    await cache.save();
 }
 
 const handle = createGitHubActionsHandle();

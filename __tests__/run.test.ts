@@ -10,10 +10,12 @@ import { MockHandle } from './mock/handle.ts'
 import { MockLuxProvider } from './mock/lux.ts'
 import { Target } from '../src/ports.ts'
 import { MockCache } from './mock/cache.ts'
+import { collectConfig } from '../src/inputs.ts'
 
 async function testTarget(target: Target): Promise<void> {
   const env = new MockEnv(target, { version: '2.0.0' })
-  const luxProvider = new MockLuxProvider()
+  const config = collectConfig(env)
+  const luxProvider = new MockLuxProvider(config)
   const fs = new MockFs()
   const downloader = new MockDownloader(fs)
   const os = new MockOS()

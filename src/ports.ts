@@ -103,6 +103,6 @@ export interface Downloader {
 }
 
 export interface Cache {
-  restore(version: string): Promise<void>
-  save(version: string): Promise<void>
+  restore(): Promise<void>
+  save(): Promise<void>
 }

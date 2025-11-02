@@ -1,6 +1,7 @@
 import * as cache from '@actions/cache'
 import { join as pathJoin } from 'path'
 import type { Cache, Env } from '../ports.js'
+import { ActionConfig } from '../inputs.js'
 
 function candidatePaths(env: Env): string[] {
   const paths: string[] = []
@@ -31,15 +32,17 @@ function cacheKeyFor(env: Env, version: string): string {
 }
 
 class ActionsCache implements Cache {
+  private readonly version: string
   private readonly env: Env
 
-  constructor(env: Env) {
+  constructor(config: ActionConfig, env: Env) {
+    this.version = config.version
     this.env = env
   }
 
-  async restore(version: string): Promise<void> {
+  async restore(): Promise<void> {
     const paths = candidatePaths(this.env)
-    const primaryKey = cacheKeyFor(this.env, version)
+    const primaryKey = cacheKeyFor(this.env, this.version)
     const restoreKeys = [`${primaryKey}`, `${this.env.getTarget()}-lux-`]
 
     try {
@@ -52,9 +55,9 @@ class ActionsCache implements Cache {
     }
   }
 
-  async save(version: string): Promise<void> {
+  async save(): Promise<void> {
     const paths = candidatePaths(this.env)
-    const key = cacheKeyFor(this.env, version)
+    const key = cacheKeyFor(this.env, this.version)
     try {
       this.env.info(`Attempting to save Lux cache with key: ${key}`)
       await cache.saveCache(paths, key)
@@ -65,6 +68,6 @@ class ActionsCache implements Cache {
   }
 }
 
-export function createActionsCache(env: Env): Cache {
-  return new ActionsCache(env)
+export function createActionsCache(config: ActionConfig, env: Env): Cache {
+  return new ActionsCache(config, env)
 }

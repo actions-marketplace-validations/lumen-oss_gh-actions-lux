@@ -1,12 +1,19 @@
+import { ActionConfig } from '../../src/inputs'
 import { LuxRelease } from '../../src/lux'
 import { LuxProvider } from '../../src/ports'
 
 export class MockLuxProvider implements LuxProvider {
-  async getRelease(rawVersion: string): Promise<LuxRelease> {
+  private readonly version: string
+
+  constructor(config: ActionConfig) {
+    this.version = config.version
+  }
+
+  async getRelease(): Promise<LuxRelease> {
     const version =
-      !rawVersion || rawVersion === 'latest'
+      this.version === 'latest'
         ? '1.0.0'
-        : String(rawVersion).replace(/^v/, '')
+        : String(this.version).replace(/^v/, '')
     const checksumA =
       '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'
     const checksumB =

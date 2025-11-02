@@ -1,5 +1,4 @@
 import type { Handle } from './ports.ts'
-import { collectConfig } from './inputs.js'
 import { join as pathJoin } from 'path'
 import { createInstaller } from './installer.js'
 
@@ -10,12 +9,9 @@ export async function run(handle: Handle): Promise<void> {
   const downloader = handle.getDownloader()
   const cache = handle.getCache()
   try {
-    const config = collectConfig(env)
-    env.debug(`Parsed inputs: ${JSON.stringify(config)}`)
     env.debug(`Running on ${env.getTarget()}`)
-    const version = config.version
 
-    await cache.restore(version)
+    await cache.restore()
 
     const lux_release = await lux_provider.getRelease()
     const installer_asset = lux_release.assetForTarget(env.getTarget())
