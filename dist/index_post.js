@@ -1,4 +1,4 @@
-import { G as GitHubActionsHandle } from './handle-zgMIq5sw.js';
+import { a as createGitHubActionsHandle } from './handle-BMApqLSP.js';
 import 'os';
 import 'crypto';
 import 'fs';
@@ -30,13 +30,13 @@ import 'tty';
 import 'fs/promises';
 
 async function run_post(handle) {
-    handle = handle ?? new GitHubActionsHandle();
     const env = handle.getEnv();
     const cache = handle.getCache();
     const version = env.getVersionInput();
     await cache.save(version);
 }
 
+const handle = createGitHubActionsHandle();
 /* istanbul ignore next */
-run_post();
+run_post(handle);
 //# sourceMappingURL=index_post.js.map

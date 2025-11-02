@@ -15,7 +15,7 @@ import { createDiskFileSystem } from './filesystem.js'
 import { createGitHubReleasesLuxProvider } from './lux.js'
 import { createRealOS } from './os.js'
 
-export class GitHubActionsHandle implements Handle {
+class GitHubActionsHandle implements Handle {
   private readonly env: Env
   private readonly config: ActionConfig
   private readonly lux_provider: LuxProvider
@@ -61,4 +61,8 @@ export class GitHubActionsHandle implements Handle {
   getCache(): Cache {
     return this.cache
   }
+}
+
+export function createGitHubActionsHandle(): Handle {
+  return new GitHubActionsHandle()
 }

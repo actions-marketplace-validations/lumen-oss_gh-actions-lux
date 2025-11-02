@@ -1,4 +1,4 @@
-import { U as UnsupportedTargetError, G as GitHubActionsHandle, c as collectConfig } from './handle-zgMIq5sw.js';
+import { U as UnsupportedTargetError, c as collectConfig, a as createGitHubActionsHandle } from './handle-BMApqLSP.js';
 import { join } from 'path';
 import 'os';
 import 'crypto';
@@ -166,7 +166,6 @@ function createExeInstaller(env, fs, os) {
 }
 
 async function run(handle) {
-    handle = handle ?? new GitHubActionsHandle();
     const env = handle.getEnv();
     const lux_provider = handle.getLuxProvider();
     const filesystem = handle.getFileSystem();
@@ -201,6 +200,7 @@ async function run(handle) {
     }
 }
 
+const handle = createGitHubActionsHandle();
 /* istanbul ignore next */
-run();
+run(handle);
 //# sourceMappingURL=index.js.map

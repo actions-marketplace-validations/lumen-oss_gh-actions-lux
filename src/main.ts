@@ -1,11 +1,9 @@
 import type { Handle } from './ports.ts'
-import { GitHubActionsHandle } from './io/handle.js'
 import { collectConfig } from './inputs.js'
 import { join as pathJoin } from 'path'
 import { createInstaller } from './installer.js'
 
-export async function run(handle?: Handle): Promise<void> {
-  handle = handle ?? new GitHubActionsHandle()
+export async function run(handle: Handle): Promise<void> {
   const env = handle.getEnv()
   const lux_provider = handle.getLuxProvider()
   const filesystem = handle.getFileSystem()
