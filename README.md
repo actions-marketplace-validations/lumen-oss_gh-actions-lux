@@ -153,7 +153,7 @@ on:
   pull_request:
   push:
     branches: [main]
-
+jobs:
   test:
     name: ${{ matrix.job.target }} - Lua ${{ matrix.lua_version }}
     runs-on: ${{ matrix.job.os }}
