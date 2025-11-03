@@ -155,7 +155,7 @@ on:
     branches: [main]
 jobs:
   test:
-    name: ${{ matrix.job.target }} - Lua ${{ matrix.lua_version }}
+    name: ${{ matrix.job.target }} - Lua ${{ matrix.nvim-version }}
     runs-on: ${{ matrix.job.os }}
     strategy:
       fail-fast: false
