@@ -134,7 +134,7 @@ jobs:
 
       - name: Type checks
         run: |
-          lx --lua-version ${{ matrix.lua_version }} check
+          lx --lua-version ${{ matrix.lua_version }} check --warnings-as-errors
 
       - name: Run tests
         run: |
