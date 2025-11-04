@@ -189,12 +189,39 @@ jobs:
 
       - name: Type checks
         run: |
-          lx --nvim check
+          lx --nvim check --warnings-as-errors
+        env:
+          # See the .luarc.json below
+          VIMRUNTIME: /home/runner/nvim-${{ matrix.nvim-version }}/share/nvim/runtime
+
 
       - name: Run tests
         run: |
           lx --nvim test
 ```
+
+With the following `.luarc.json`:
+
+```json
+{
+  "diagnostics": {
+    "enable": true,
+  },
+  "runtime": {
+    "version": "Lua 5.1"
+  },
+  "workspace": {
+    "library": [
+      "$VIMRUNTIME"
+    ]
+  }
+}
+```
+
+> [!NOTE]
+>
+> `lx check` will automatically add dependencies to your `.luarc.json`'s `workspace.library`.
+
 
 ### Uploading a package to luarocks.org
 
