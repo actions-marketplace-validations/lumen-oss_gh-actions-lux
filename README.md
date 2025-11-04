@@ -13,7 +13,7 @@ at managing Lua projects.
 ### `version`
 
 - Default: `latest`
-- Example: `0.18.8`
+- Example: `0.19.0`
 
 > [!IMPORTANT]
 >
@@ -44,7 +44,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.8
+          version: 0.19.0
 
       - name: Use lux-cli
         run: |
@@ -83,7 +83,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.8
+          version: 0.19.0
 
       - name: Use lux-cli
         run: |
@@ -130,7 +130,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.8
+          version: 0.19.0
 
       - name: Type checks
         run: |
@@ -185,7 +185,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.8
+          version: 0.19.0
 
       - name: Type checks
         run: |
@@ -248,7 +248,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.8
+          version: 0.19.0
 
       - name: Upload
         run: |
